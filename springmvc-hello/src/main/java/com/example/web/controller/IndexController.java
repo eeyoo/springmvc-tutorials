@@ -18,7 +18,7 @@ public class IndexController {
     @RequestMapping({"","index"})
     public String index(ModelMap model) {
 
-        model.addAttribute("message", "我的未来不是梦！");
+        model.addAttribute("message", "我的未来不是梦12！");
         return "/index.html";
     }
 }

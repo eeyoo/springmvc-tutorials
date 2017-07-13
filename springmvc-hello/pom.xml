@@ -16,9 +16,21 @@
 
     <properties>
         <beetl.version>2.7.18</beetl.version>
+        <spring.version>3.2.13.RELEASE</spring.version>
+        <!--<jstl.version>1.2</jstl.version>-->
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>javax.servlet</groupId>-->
+            <!--<artifactId>jstl</artifactId>-->
+            <!--<version>${jstl.version}</version>-->
+        <!--</dependency>-->
 
         <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
         <dependency>
@@ -64,43 +76,5 @@
 
     <build>
         <finalName>springmvc-hello</finalName>
-
-        <plugins>
-            <!--<plugin>-->
-                <!--<groupId>org.apache.maven.plugins</groupId>-->
-                <!--<artifactId>maven-compiler-plugin</artifactId>-->
-                <!--<version>3.3</version>-->
-                <!--<configuration>-->
-                    <!--<source>${jdk.version}</source>-->
-                    <!--<target>${jdk.version}</target>-->
-                <!--</configuration>-->
-            <!--</plugin>-->
-
-            <!-- embedded Jetty server, for testing -->
-            <plugin>
-                <groupId>org.eclipse.jetty</groupId>
-                <artifactId>jetty-maven-plugin</artifactId>
-                <version>9.2.11.v20150529</version>
-                <configuration>
-                    <scanIntervalSeconds>10</scanIntervalSeconds>
-                    <jettyXml>src/main/resources/jetty.xml</jettyXml>
-                    <webApp>
-                        <contextPath>/</contextPath>
-                    </webApp>
-                </configuration>
-            </plugin>
-
-            <!--<plugin>-->
-                <!--<groupId>org.apache.tomcat.maven</groupId>-->
-                <!--<artifactId>tomcat7-maven-plugin</artifactId>-->
-                <!--<version>2.2</version>-->
-                <!--<configuration>-->
-                    <!--<port>80</port>-->
-                    <!--<path>/</path>-->
-                    <!--<contextReloadable>true</contextReloadable>-->
-                    <!--<uriEncoding>UTF-8</uriEncoding>-->
-                <!--</configuration>-->
-            <!--</plugin>-->
-        </plugins>
     </build>
 </project>
