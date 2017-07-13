@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>订单</title>
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+
+<div id="table"></div>
+
+<script src="/js/jquery-1.9.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/bootstrap-table.js"></script>
+<script src="/js/bootstrap-table-locale-all.js"></script>
+<script>
+    $('#table').bootstrapTable({
+        locale: 'zh-CN',
+        columns: [
+            {field: 'id', name: 'id', align: 'center'},
+            {field: 'name', name: '姓名', align: 'center'},
+            {field: 'sex', name: '性别', align: 'center'}
+        ]
+    })
+</script>
+</body>
+</html>
