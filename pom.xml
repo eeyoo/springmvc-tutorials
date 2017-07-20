@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.example</groupId>
+	<artifactId>springmvc-tutorials</artifactId>
+	<version>1.0</version>
+	<packaging>pom</packaging>
+
+	<name>springmvc-tutorials</name>
+	<url>http://maven.apache.org</url>
+	
+	<developers>
+		<developer>
+			<id>1</id>
+			<name>feilinwu</name>
+			<email>feilinwu2036@gmail.com</email>
+			<url>https://github.com/eeyoo</url>
+		</developer>
+	</developers>
+
+	<properties>
+		<java.version>1.7</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	<dependencies>
+		<!-- Log4j2 -->
+
+		<!-- Server -->
+		<!--<dependency>-->
+			<!--<groupId>org.apache.tomcat.embed</groupId>-->
+			<!--<artifactId>tomcat-embed-jasper</artifactId>-->
+			<!--<scope>provided</scope>-->
+		<!--</dependency>-->
+
+		<!-- Test -->
+		<dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+	</dependencies>
+
+	<!-- multiple Module -->
+	<modules>
+		<module>springmvc-hello</module>
+		<module>springmvc-hibernate</module>
+	</modules>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.tomcat.maven</groupId>
+					<artifactId>tomcat7-maven-plugin</artifactId>
+					<version>2.2</version>
+					<configuration>
+						<port>80</port>
+						<path>/</path>
+						<contextReloadable>true</contextReloadable>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>

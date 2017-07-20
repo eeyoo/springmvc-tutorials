@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/layer/skin/layer.css">
+    <style>
+        body {
+            width: 80%;
+            margin: 0 auto;
+        }
+    </style>
+
+</head>
+<body style="padding-top:50px;">
+
+
+    <div id="toolbar">
+        <button class="btn btn-primary" id="add">新增</button>
+        <button class="btn btn-warning" id="edit">修改</button>
+        <button class="btn btn-danger" id="delete">删除</button>
+        <button class="btn btn-info" id="info">详情</button>
+    </div>
+    <div id="table"></div>
+
+
+    <script src="/static/js/jquery.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/bootstrap-table.js"></script>
+    <script src="/static/js/bootstrap-table-locale-all.js"></script>
+    <script src="/static/layer/layer.js"></script>
+<script>
+
+    $(function () {
+        $table = $('#table');
+        $table.bootstrapTable({
+            locale: 'zh-CN',
+            columns: [
+                {field:'select', radio:true, width:50}
+                ,{field:'id', title:'id', align:'center', width:100}
+                ,{field:'loginName', title:'用户名', align:'center',width:100}
+                ,{field:'password', title:'密码', align:'center',width:300}
+                ,{field:'email', title:'邮箱', align:'center'}
+                ,{field:'type', title:'性别', align:'center', width:100, formatter:function (value,index) {
+                    return value === 0 ? '女' : '男';
+                }}
+                ,{field:'status', title:'状态', align:'center', width:100,}
+                ,{field:'crTime', title:'创建时间', align:'center',width:300}
+                ,{field:'lastTime', title:'最后登录时间', align:'center',width:300}
+            ],
+            url: '/user/data',
+            search: true,
+            toolbar: '#toolbar',
+            striped: true,
+            showRefresh: true,
+            showToggle: true,
+            showColumns: true,
+            cardView: false,
+            detailView: true,
+            clickToSelect: true,
+            pagination: true,
+            sidePagination: 'client',
+            pageSize: 10,
+            pageList: [5,10,15,20]
+
+        })
+    });
+
+    $('#add').click(function () {
+       layer.msg('add');
+    });
+
+    $('#edit').click(function () {
+        layer.msg('edit');
+    });
+
+    $('#delete').click(function () {
+        layer.msg('delete');
+    });
+
+    $('#info').click(function () {
+        layer.open({
+            type:2
+            ,title: '列表'
+            ,area: ['60em','30em']
+            ,shade: 0
+            ,maxmin: true
+            ,content: '/user'
+        });
+    });
+
+</script>
+</body>
+</html>
