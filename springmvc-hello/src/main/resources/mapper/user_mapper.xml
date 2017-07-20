@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-
 <mapper namespace="com.example.web.dao.UserDao">
 
     <select id="findAll" resultType="com.example.web.model.User">
         SELECT id, loginName, password, type, status, crTime, lastTime
         FROM user ORDER by lastTime asc
     </select>
+
+    <insert id="save" parameterType="com.example.web.model.User">
+        INSERT TABLE user (loginName,password,type,email)
+        VALUES (#{user.loginName},#{user.password},#{user.type},#{user.email})
+    </insert>
+
+    <delete id="deleteById">
+        DELETE TABLE user WHERE id = #{id}
+    </delete>
 </mapper>
