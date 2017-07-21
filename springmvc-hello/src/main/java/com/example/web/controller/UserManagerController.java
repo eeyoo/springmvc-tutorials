@@ -3,13 +3,12 @@ package com.example.web.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.example.web.dao.UserDao;
 import com.example.web.model.User;
+import com.example.web.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -25,6 +24,9 @@ public class UserManagerController {
 
     @Autowired
     UserDao userDao;
+
+    @Autowired
+    IUserService userService;
 
     @RequestMapping({"","/","/list"})
     public String index() {
@@ -45,7 +47,7 @@ public class UserManagerController {
     }
 
     @RequestMapping("/edit/{id}")
-    public String edit(@RequestParam("id") long id) {
+    public String edit(@PathVariable long id) {
         return BASE + "/edit.html";
     }
 
@@ -69,7 +71,7 @@ public class UserManagerController {
 
     @RequestMapping("/delete/{id}")
     @ResponseBody
-    public String delete(@RequestParam("id") long id) {
+    public String delete(@PathVariable long id) {
         Map map = new HashMap();
         try {
             userDao.deleteById(id);
@@ -82,5 +84,12 @@ public class UserManagerController {
         }
 
         return JSONObject.toJSONString(map);
+    }
+
+    @RequestMapping("/info/{id}")
+    public String info(@PathVariable long id, Model model) {
+        User user = userService.findBySerialId(id);
+        model.addAttribute("user", user);
+        return BASE + "/info.html";
     }
 }

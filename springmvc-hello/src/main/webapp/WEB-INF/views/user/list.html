@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>用户</title>
     <link rel="stylesheet" href="/static/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/static/layer/skin/layer.css">
+    <link rel="stylesheet" href="/static/layer/skin/default/layer.css">
     <style>
         body {
             width: 80%;
@@ -32,9 +32,10 @@
     <script src="/static/layer/layer.js"></script>
 <script>
 
+    var $table = null;
     $(function () {
-        $table = $('#table');
-        $table.bootstrapTable({
+        //console.log(1);
+        $table = $('#table').bootstrapTable({
             locale: 'zh-CN',
             columns: [
                 {field:'select', radio:true, width:50}
@@ -58,6 +59,9 @@
             showColumns: true,
             cardView: false,
             detailView: true,
+            detailFormatter: function (index, row) {
+                return '<div id="detail"></div>';
+            },
             clickToSelect: true,
             pagination: true,
             sidePagination: 'client',
@@ -66,6 +70,17 @@
 
         })
     });
+
+    function getSelectRows() {
+        //console.log($table);
+        var rows = $table.bootstrapTable('getSelections');
+        if (!rows[0]) {
+            layer.msg('请选择一行数据！');
+            return;
+        } else {
+            return rows[0].id;
+        }
+    }
 
     $('#add').click(function () {
        layer.msg('add');
@@ -80,13 +95,22 @@
     });
 
     $('#info').click(function () {
+        var id = null;
+        var rows = $table.bootstrapTable('getSelections');
+        if (!rows[0]) {
+            layer.msg('请选择一行数据！');
+            return false;
+        } else {
+            id = rows[0].id;
+        }
+        //console.log(id);
         layer.open({
             type:2
-            ,title: '列表'
-            ,area: ['60em','30em']
+            ,title: '详情'
+            ,area: ['30em','30em']
             ,shade: 0
             ,maxmin: true
-            ,content: '/user'
+            ,content: '/user/info/' + id + "?rnd=" + new Date().getTime()
         });
     });
 

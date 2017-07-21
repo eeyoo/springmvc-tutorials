@@ -3,8 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <title>详情</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
 </head>
 <body>
 
+    <div class="container">
+        <!--<ul>-->
+            <!--<li class="label label-success">id - ${user.id}</li>-->
+            <!--<li class="label label-success">loginName - ${user.loginName}</li>-->
+            <!--<li class="label label-success">password - ${user.password}</li>-->
+            <!--<li class="label label-success">lastTime - ${user.lastTime}</li>-->
+        <!--</ul>-->
+        <table class="table">
+            <tr>
+                <td><div class="label label-success">id</div></td>
+                <td>${user.id}</td>
+            </tr>
+            <tr>
+                <td><div class="label label-success">用户名</div></td>
+                <td>${user.loginName}</td>
+            </tr>
+            <tr>
+                <td><div class="label label-success">密码</div></td>
+                <td>${user.password}</td>
+            </tr>
+            <tr>
+                <td><div class="label label-success">性别</div></td>
+                <td>${user.type == 0 ? '女' : '男'}</td>
+            </tr>
+            <tr>
+                <td><div class="label label-success">状态</div></td>
+                <td>${user.status}</td>
+            </tr>
+            <tr>
+                <td><div class="label label-success">时间</div></td>
+                <td>${user.lastTime}</td>
+            </tr>
+
+        </table>
+    </div>
 </body>
 </html>

@@ -7,6 +7,12 @@
         FROM user ORDER by lastTime asc
     </select>
 
+    <select id="findById" resultType="com.example.web.model.User">
+        SELECT id, loginName, password, type, status, crTime, lastTime
+        FROM user
+        WHERE id = #{id}
+    </select>
+
     <insert id="save" parameterType="com.example.web.model.User">
         INSERT TABLE user (loginName,password,type,email)
         VALUES (#{user.loginName},#{user.password},#{user.type},#{user.email})
