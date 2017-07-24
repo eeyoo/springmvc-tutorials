@@ -18,23 +18,35 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderDao orderDao;
 
-    @Override
+//    @Override
+//    public List<Order> findAllOrder() {
+//        return orderDao.findAll();
+//    }
+//
+//    @Override
+//    public Order findById(int id) {
+//        return orderDao.findById(id);
+//    }
+//
+//    @Override
+//    public void deleteById(int id) {
+//        try {
+//            orderDao.deleteById(id);
+//        } catch (DataAccessException e) {
+//            e.printStackTrace();
+//        }
+//
+//    }
+
     public List<Order> findAllOrder() {
-        return orderDao.findAll();
+        return null;
     }
 
-    @Override
     public Order findById(int id) {
-        return orderDao.findById(id);
+        return null;
     }
 
-    @Override
     public void deleteById(int id) {
-        try {
-            orderDao.deleteById(id);
-        } catch (DataAccessException e) {
-            e.printStackTrace();
-        }
 
     }
 }

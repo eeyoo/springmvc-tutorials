@@ -33,10 +33,10 @@ public class IndexController {
         web.put("head", "你有木有梦想");
         web.put("content", "有梦想就要去实现");
         model.addAttribute("web",web);
-        return "/index.html";
+        return BASE + "/index.html";
     }
 
-    @RequestMapping("/json")
+    @RequestMapping(value = "/json", produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String data() {
         List<Dept> list = deptService.findAll();
@@ -44,7 +44,7 @@ public class IndexController {
         return JSONObject.toJSONString(list);
     }
 
-    @RequestMapping("/json/{id}")
+    @RequestMapping(value = "/json/{id}", produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String select(@PathVariable long id) {
         Dept dept = deptService.findById(id);
