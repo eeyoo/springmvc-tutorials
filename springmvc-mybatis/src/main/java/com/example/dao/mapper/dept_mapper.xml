@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.dao.DeptDao">
+    
+    <resultMap id="BaseResultMap" type="com.example.model.Dept">
+        <result property="deptNo" column="deptno"/>
+        <result property="dName" column="dname"/>
+        <result property="loc" column="loc"/>
+    </resultMap>
+
+    <sql id="Table_Name">
+        dept
+    </sql>
+
+    <sql id="Base_Column_List">
+        deptNo, dName, loc
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id="Example_Where_Clause">
+        where 1=1
+        <trim suffixOverrides=",">
+            <if test="deptNo != null">
+                and deptno = #{deptNo}
+            </if>
+            <if test="dName != null and dName != ''">
+                and dname like concat(concat('%', '${dName}'), '%')
+            </if>
+            <if test="loc != null and loc != ''">
+                and loc like concat(concat('%', '${loc}'), '%')
+            </if>
+        </trim>
+    </sql>
+
+    <!-- 1.新增记录 -->
+    <insert id="add" parameterType="Object" >
+        INSERT INTO dept (dname,loc) VALUES (#{dName}, #{loc})
+    </insert>
+
+    <!-- 2.根据id修改记录-->
+    <update id="update" parameterType="Object" >
+        update dept set dname=#{dName}, loc=#{loc} where deptno=#{deptNo}
+    </update>
+
+    <!-- 3.只修改不为空的字段 -->
+    <update id="updateBySelective" parameterType="Object" >
+        update users set
+        <trim  suffixOverrides="," >
+            <if test="code != null  and code != '' ">
+                code=#{code},
+            </if>
+            <if test="name != null  and name != '' ">
+                name=#{name},
+            </if>
+            <if test="password != null  and password != '' ">
+                password = #{password},
+            </if>
+            <if test="sex != null  and sex != '' ">
+                sex=#{sex},
+            </if>
+            <if test="birth != null  ">
+                birth=#{birth},
+            </if>
+            <if test="message != null  and message != '' ">
+                message=#{message},
+            </if>
+            <if test="status != null and status != ''">
+                status = #{status}
+            </if>
+        </trim> where id=#{id}
+    </update>
+
+    <!-- 4.根据id进行删除 -->
+    <delete id="deleteById" parameterType="int">
+        delete from dept where deptno = #{deptNo}
+    </delete>
+    
+    <select id="findAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dept
+        <include refid="Example_Where_Clause"/>
+    </select>
+    
+    <select id="findById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        SELECT 
+        <include refid="Base_Column_List"/>
+        from dept where deptno = #{deptno}
+    </select>
+
+</mapper>
