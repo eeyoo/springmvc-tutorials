@@ -18,7 +18,6 @@ public class DeptDaoImpl implements DeptDao {
         this.sessionFactory = sessionFactory;
     }
 
-    @Override
     public Dept findById(long id) {
         String hql = "from Dept obj where obj.deptNo = ?";
         Query query = sessionFactory.getCurrentSession().createQuery(hql);
@@ -27,11 +26,18 @@ public class DeptDaoImpl implements DeptDao {
         return (Dept) query.uniqueResult();
     }
 
-    @Override
     public List<Dept> findAll() {
         String hql = "from Dept";
         Query query = sessionFactory.getCurrentSession().createQuery(hql);
 
         return query.list();
+    }
+
+    public Dept findByName(String dname) {
+        String hql = "from Dept obj where obj.deptName = ?";
+        Query query = sessionFactory.getCurrentSession().createQuery(hql);
+        query.setString(0, dname);
+
+        return (Dept) query.uniqueResult();
     }
 }

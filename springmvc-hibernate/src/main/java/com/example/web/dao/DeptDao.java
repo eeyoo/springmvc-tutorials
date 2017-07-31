@@ -12,4 +12,6 @@ public interface DeptDao {
     Dept findById(long id);
 
     List<Dept> findAll();
+
+    Dept findByName(String dname);
 }

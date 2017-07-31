@@ -12,4 +12,6 @@ public interface DeptService {
     List<Dept> findAll();
 
     Dept findById(long id);
+
+    Dept findByName(String dname);
 }

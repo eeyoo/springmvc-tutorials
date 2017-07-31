@@ -50,4 +50,11 @@ public class IndexController {
         Dept dept = deptService.findById(id);
         return JSONObject.toJSONString(dept);
     }
+
+    @RequestMapping(value = "/data/{dname}", produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public String selectByName(@PathVariable String dname) {
+        Dept dept = deptService.findByName(dname);
+        return JSONObject.toJSONString(dept);
+    }
 }

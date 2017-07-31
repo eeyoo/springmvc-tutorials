@@ -17,13 +17,15 @@ public class DeptServiceImpl implements DeptService {
         this.deptDao = deptDao;
     }
 
-    @Override
     public List<Dept> findAll() {
         return deptDao.findAll();
     }
 
-    @Override
     public Dept findById(long id) {
         return deptDao.findById(id);
+    }
+
+    public Dept findByName(String dname) {
+        return deptDao.findByName(dname);
     }
 }
